@@ -226,4 +226,17 @@ public class UserManager {
 		session.flush();
 	}
 
+	public void updateUser(UserBo userBo) {
+		User user = getUserById(userBo.getUserId());
+		user.setFirstName(userBo.getFirstName());
+		user.setLastName(userBo.getLastName());
+		if(userBo.getPassword() != null){
+			user.setPassword(encodePassword(userBo.getPassword()));
+		}
+		Transaction tx = session.beginTransaction();
+		session.saveOrUpdate(user);
+		tx.commit();
+		session.flush();
+	}
+
 }

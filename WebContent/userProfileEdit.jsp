@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="com.crucialpicks.managers.UserManager"%>
+<%@ page import="com.crucialpicks.business.UserBo"%>
+<%@ page import="com.google.gson.Gson"%>
 <%
 	String cxtPath = request.getContextPath();
+	UserManager userManager = new UserManager();
+	UserBo userBo = userManager.getCurrentUserBo(request);
+	Gson gson = new Gson();
+	String userJsonString = gson.toJson(userBo);
 %>
 <html>
 <jsp:include page="/modules/navBar/navBar.jsp" />
@@ -11,6 +18,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Crucial Picks - Edit User Profile</title>
 </head>
+
+<script src="<%=cxtPath%>/js/admin/userProfileEdit.js"></script>
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
@@ -61,7 +71,7 @@
 					<label class="pull-right">Current Password</label>
 				</div>
 				<div class="col-md-5">
-					<input type="text" class="form-control input input-sm">
+					<input type="password" class="form-control input input-sm currentPw">
 				</div>
 			</div>
 			<div class="row" style="margin-top: 10px">
@@ -69,7 +79,7 @@
 					<label class="pull-right">New Password</label>
 				</div>
 				<div class="col-md-5">
-					<input type="text" class="form-control input input-sm">
+					<input type="password" class="form-control input input-sm pw1">
 				</div>
 			</div>
 			<div class="row" style="margin-top: 10px">
@@ -77,7 +87,7 @@
 					<label class="pull-right">New Password Again</label>
 				</div>
 				<div class="col-md-5">
-					<input type="text" class="form-control input input-sm">
+					<input type="password" class="form-control input input-sm pw2">
 				</div>
 			</div>
 			<div class="row" style="margin-top: 10px">
@@ -90,3 +100,29 @@
 	</div>
 </div>
 <!-- /container -->
+
+<script>
+	$(document).ready(function() {
+		$.userProfileEdit.init("<%=cxtPath%>",<%=userJsonString%>);
+	});
+</script>
+
+<!-- ******************************************************* -->
+<!-- 				Modals and Templates					 -->
+<!-- ******************************************************* -->
+
+<div id="profileEditModal" class="modal fade" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">X</button>
+				<h3></h3>
+			</div>
+			<div class="modal-body">
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-sm btn-default okBtn" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
