@@ -2,8 +2,6 @@ package com.crucialpicks.core;
 
 import javax.servlet.http.HttpSession;
 
-import com.crucialpicks.dbo.User;
-
 /**
  * Placholder for all user information to be stored on their Tomcat Session.
  * 
