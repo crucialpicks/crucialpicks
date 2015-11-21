@@ -27,7 +27,7 @@ import com.crucialpicks.hibernate.HibernateUtils;
  * @author Steven
  */
 public class CfbTeamManager {
-	// TODO rename to college football picks mgr
+	// TODO rename to college football picks mgr 
 	private Session session;
 
 	public CfbTeamManager() {
