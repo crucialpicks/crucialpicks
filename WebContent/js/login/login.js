@@ -71,9 +71,36 @@ $.login.performClientSideValidation = function() {
  */
 $.login.presentUnPwReminderModal = function() {
 	$("#unPwReminderModal").modal("show");
-
+	$(".emailInput", "#unPwReminderModal").focus();
+	$(".emailInput", "#unPwReminderModal").keyup(function(event) {
+		if (event.keyCode == 13) {
+			$.login.sendUnPwReminder();
+		}
+	});
 	$(".okBtn", "#unPwReminderModal").unbind().click(function() {
-		// TODO gather email, verify its valid, ajax to servlet that sends
-		// credents, then alert to user its happened.
+		$.login.sendUnPwReminder();
+	});
+};
+
+/**
+ * 
+ */
+$.login.sendUnPwReminder = function(){
+	var email = $(".emailInput", "#unPwReminderModal").val();
+	if (!$.coreUtils.isValidEmail(email)) {
+		alert("Please enter a valid email.");
+		return;
+	}
+	$.ajax({
+		type : "POST",
+		url : $.login.cxtPath + "/servlets/SendUnPwReminderServlet",
+		data : {
+			email : email
+		},
+		dataType : "json",
+		success : function(jsonResult) {
+			alert("Email Sent.");
+			$("#unPwReminderModal").modal("hide");
+		}
 	});
 };
