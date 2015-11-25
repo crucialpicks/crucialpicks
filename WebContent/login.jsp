@@ -78,4 +78,39 @@
 		});
 	</script>
 </body>
+
+<!-- ******************************************************* -->
+<!-- 				Modals and Templates					 -->
+<!-- ******************************************************* -->
+
+<div id="unPwReminderModal" class="modal fade" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">X</button>
+				<h3>Forget your Username or Password?</h3>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+						<label class="smallFont">Enter an email and we'll send you your info:</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<label class="smallFont pull-right">Email Address</label>
+					</div>
+					<div class="col-md-4">
+						<input type="text" class="form-control input input-sm emailInput" placeholder="Email Address" />
+					</div>
+					<div class="col-md-4"></div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-sm btn-default okBtn">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 </html>

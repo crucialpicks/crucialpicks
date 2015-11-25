@@ -17,13 +17,13 @@ $.login.init = function(cxtPath) {
 	});
 
 	$(".unPwRecoverLink").unbind().click(function() {
-		alert("Boom");
+		$.login.presentUnPwReminderModal();
 	});
 
 	$(".signUpSubmitBtn").unbind().click(function() {
-		window.location.replace(cxtPath+"/signUp.jsp");
+		window.location.replace(cxtPath + "/signUp.jsp");
 	});
-	
+
 	$(".usernameInput").focus();
 };
 
@@ -63,5 +63,17 @@ $.login.performClientSideValidation = function() {
 				window.location.replace($.login.cxtPath + "/index.jsp");
 			}
 		}
+	});
+};
+
+/**
+ * 
+ */
+$.login.presentUnPwReminderModal = function() {
+	$("#unPwReminderModal").modal("show");
+
+	$(".okBtn", "#unPwReminderModal").unbind().click(function() {
+		// TODO gather email, verify its valid, ajax to servlet that sends
+		// credents, then alert to user its happened.
 	});
 };
